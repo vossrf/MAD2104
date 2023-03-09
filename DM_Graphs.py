@@ -269,7 +269,7 @@ def Hasse(r,prt=0,**kwargs):
     for n1 in out:                # all possible starting nodes
         for n2 in out[n1]:        # all possible 1-step destinations
             for n3 in out[n2]:    # all 3-step destinations after n1,n2
-                if n3 in out[n1]: # remove direct connectio n1,n3
+                if n3 in out[n1]: # remove direct connection n1,n3
                     e13 = n1,n3
                     if e13 in rk:
                         rk.remove(e13) # remove
@@ -310,7 +310,7 @@ def Hasse(r,prt=0,**kwargs):
             ranks[rank] = [n]
     if prt: print('ranks =',ranks)
     order = []         # empty list for nodes
-    XY = []            # empty list for ndde positions
+    XY = []            # empty list for node positions
     for rank in sorted(ranks):
         nR = sorted(ranks[rank]) # list of nodes with this rank
         x = (1-len(nR))/2        # left most position
@@ -337,7 +337,7 @@ def isRefl(r):
 def isASym(r):
     "decide if the pair connections r are antisymmetric"
     for n1,n2 in r:            # test all connections
-        if n1==n2 or n2==None: continue    # skip loops and solitary nodes
+        if n1==n2 or n2==None: continue # skip loops & solitary nodes
         if (n2,n1) in r:       # reverse found in r
             return False
     return True    # all connections checked, no 2-way
@@ -345,10 +345,10 @@ def isASym(r):
 def isSym(r):
     "decide if the pair connections r are symmetric"
     for n1,n2 in r:            # test all connections
-        if n1==n2 or n2==None: continue    # skip loops and solitary nodes
+        if n1==n2 or n2==None: continue # skip loops & solitary nodes
         if (n2,n1) not in r:  # no reverse found in r
             return False
-    return True    # all connections checked, all 2-way
+    return True    # all connections checked, no 1-way
 
 def isTran(r):
     "decide if every 2-step connection also has a 1-step shortcut"
