@@ -324,7 +324,7 @@ def Hasse(r,prt=0,**kwargs):
     DiGraph(rk,order=order,nodeXY=XY,**kwargs)
 
 def isRefl(r):
-    "decide if the pair connections on set A are reflexive"
+    "decide if the pair connections r are reflexive"
     nodes = set()      # empty set to collect all nodes
     for n1,n2 in r:    # unpack each pair into 2 nodes
         nodes.add(n1)  # add to set of all nodes
@@ -369,15 +369,11 @@ def isTran(r):
     return True                   # no 2-step without 1-step
 
 def isEquiv(r):
-    " decide if relation r is an Equivalence Relation"
+    "decide if relation r is an Equivalence Relation"
     if isRefl(r) and isSym(r) and isTran(r): return True
     return False
 
 def isPO(r):
-    " decide if relation r is a Partial Ordering"
+    "decide if relation r is a Partial Ordering"
     if isRefl(r) and isASym(r) and isTran(r): return True
-    return False
-def isEquiv(r):
-    " decide if relation r is an Equivalence Relation"
-    if isRefl(r) and isSym(r) and isTran(r): return True
     return False
